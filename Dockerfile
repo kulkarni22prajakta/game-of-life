@@ -1,7 +1,5 @@
 FROM tomcat
 
-//RUN rm -rf /usr/local/tomcat/webapps/*
-
 COPY gameoflife-web/target/gameoflife.war /usr/local/tomcat/webapps/
 
 EXPOSE 8080
