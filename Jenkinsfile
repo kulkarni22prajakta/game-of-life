@@ -16,6 +16,7 @@ sh "chmod -R 777 game-of-life"
 sh "cd game-of-life/"
 sh "mvn clean install -X"
 
+sh "cd"
 sh "yum install docker -y"
 sh "systemctl start docker"
 
