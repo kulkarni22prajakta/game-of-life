@@ -9,7 +9,7 @@ sh "yum install maven -y"
 sh "mvn clean install -DskipTests=true"
 }
 }
-stage('stage2){
+stage('stage2'){
 agent{
 label "slave1"
 }
