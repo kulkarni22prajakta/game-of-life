@@ -6,7 +6,7 @@ agent{
 label "built-in"
 }
 steps{
-sh "cd /mnt/"
+sh "mkdir /mnt/my_git"
 sh "git clone https://github.com/kulkarni22prajakta/game-of-life.git -b master"
 sh "yum install maven -y"
 sh "mvn clean install -DskipTests=true"
