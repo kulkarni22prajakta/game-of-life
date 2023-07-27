@@ -6,6 +6,8 @@ agent{
 label "built-in"
 }
 steps{
+sh "cd /mnt/"
+sh "git clone https://github.com/kulkarni22prajakta/game-of-life.git -b master"
 sh "yum install maven -y"
 sh "mvn clean install -DskipTests=true"
 }
@@ -16,7 +18,6 @@ label "slave1"
 }
 steps{
 sh "sudo yum install git -y"
-sh "sudo git clone https://github.com/kulkarni22prajakta/game-of-life.git -b master /mnt/"
 sh "sudo yum install docker -y"
 sh "sudo systemctl start docker"
 sh "sudo systemctl enable docker"
