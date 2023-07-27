@@ -14,8 +14,8 @@ sh "docker system prune -a -f"
 sh "docker ps -a"
 sh "docker build -t my_server_img ."
 sh "docker run -itdp 651:8080 --name my_server_cont my_server_img"
-sh "docker exec my_server_cont chmod -R 777 apache-tomcat-9.0.76/webapps/"
-sh "docker ps -a"
+//sh "docker exec my_server_cont chmod -R 777 apache-tomcat-9.0.76/webapps/"
+//sh "docker ps -a"
 }
 }
 }
