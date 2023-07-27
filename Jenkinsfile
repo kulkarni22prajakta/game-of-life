@@ -3,7 +3,7 @@ agent any
 stages{
 stage('stage1'){
 steps{
-sh "yum install maven -y"
+//sh "yum install maven -y"
 sh "mvn clean install -DskipTests=true"
 sh "yum install docker -y"
 sh "systemctl start docker"
