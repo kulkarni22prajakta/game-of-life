@@ -1,3 +1,5 @@
+*******Jenkinsfile******
+
 pipeline{
 agent{
 label "built-in"
@@ -14,8 +16,8 @@ agent{
 label "slave1"
 }
 steps{
-sh "yum install docker -y"
-sh "systemctl start docker"
+sh "sudo yum install docker -y"
+sh "sudo systemctl start docker"
 sh "docker ps -a"
 sh "docker system prune -a -f"
 sh "docker ps -a"
