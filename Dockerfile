@@ -13,7 +13,7 @@ COPY gameoflife-web/target/gameoflife.war apache-tomcat-9.0.76/webapps/
 EXPOSE 8080
 
 # Start Tomcat
-CMD ["${CATALINA_HOME}/bin/catalina.sh", "run"]
+CMD [apache-tomcat-9.0.76/bin/catalina.sh", "run"]
 
 
 
