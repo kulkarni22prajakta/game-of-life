@@ -1,17 +1,26 @@
 pipeline{
-agent{
-  label "built-in"
-}
 stages{
-stage('stage1'){
+stage(stage1){
+agent{
+label "built-in"
+}
 steps{
-/*sh "yum install maven -y"
-sh "yum install docker -y"
-sh "systemctl start docker"
-sh "systemctl enable docker"*/
+sh "yum install maven -y"
 sh "mvn clean install -DskipTests=true"
+}
+}
+stage(stage2){
+agent{
+label "slave1"
+}
+steps{
+sh "sudo yum install docker -y"
+sh "sudo systemctl start docker"
+sh "sudo chmod -R 777 /var/run/docker.sock"
 sh "docker system prune -a -f"
-sh "docker-compose up"
+sh "docker build -t my_server_img ."
+sh "docker run -itdp 651:8080 --name my_server_cont my_server_img"
+sh "docker exec my_server_cont chmod -R 777 apache-tomcat-9.0.76/webapps/"
 }
 }
 }
