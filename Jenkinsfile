@@ -8,7 +8,7 @@ label "built-in"
 steps{
 //sh "yum install maven -y"
 //sh "mvn clean install -DskipTests=true"
-sh "scp -r /root/.jenkins/workspace/docker-compose-deploy@2/gameoflife-web/target/gameoflife.war root@3.110.167.253:/"
+sh "scp -r /root/.jenkins/workspace/docker-compose-deploy@2/gameoflife-web/target/gameoflife.war root@3.110.167.253:/mnt/jslave/workspace/docker-compose-deploy/"
 }
 }
 stage(stage2){
