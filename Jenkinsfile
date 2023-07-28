@@ -19,6 +19,7 @@ steps{
 sh "sudo yum install docker -y"
 sh "sudo systemctl start docker"
 sh "sudo chmod -R 777 /var/run/docker.sock"
+sh "docker stop my_server_cont"
 sh "docker system prune -a -f"
 sh "docker build -t my_server_img ."
 sh "docker run -itdp 651:8080 --name my_server_cont my_server_img"
