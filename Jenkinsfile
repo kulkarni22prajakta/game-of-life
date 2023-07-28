@@ -22,7 +22,6 @@ sh "sudo chmod -R 777 /var/run/docker.sock"
 sh "docker system prune -a -f"
 sh "docker build -t my_server_img ."
 sh "docker run -itdp 651:8080 --name my_server_cont my_server_img"
-sh "docker exec my_server_cont chmod -R 777 apache-tomcat-9.0.76/webapps/"
 }
 }
 }
