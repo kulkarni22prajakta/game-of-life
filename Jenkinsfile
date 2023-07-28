@@ -16,7 +16,6 @@ agent{
 label "slave1"
 }
 steps{
-sh "chmod -R 777 /mnt"
 sh "sudo yum install docker -y"
 sh "sudo systemctl start docker"
 sh "sudo chmod -R 777 /var/run/docker.sock"
