@@ -4,31 +4,30 @@
   become: true
 
   tasks:
-
     - name: Download Tomcat
       get_url:
-        url: "https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.76/bin/apache-tomcat-9.0.76.zip"  # Change to the desired Tomcat version
-        dest: /apache-tomcat-9.0.76.zip
-
+        url: https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.76/bin/apache-tomcat-9.0.76.zip
+        dest: /home/velocity/server/apache-tomcat-9.0.76.zip
+        remote_src: yes
+        
     - name: Extract Tomcat
       unarchive:
-        src: /apache-tomcat-9.0.76.zip
-        dest: /
+        src: /home/velocity/server/apache-tomcat-9.0.76.zip
+        dest: /home/velocity/server/
         remote_src: yes
-        creates: /apache-tomcat-9.0.76  # Adjust to the Tomcat version you're downloading
-
-    - name: Start Tomcat
-      command: "apache-tomcat-9.0.76/bin/startup.sh"
-
-    - name: Set permissions on the directory
-      file:
-        path: /apache-tomcat-9.0.76
+        creates: /home/velocity/server/apache-tomcat-9.0.76
+    
+    - name: Permission to apache tomcat package
+      ansible.builtin.file:
+        path: /home/velocity/server/apache-tomcat-9.0.76
         state: directory
-        mode: "777"
-      args:
-        chdir: "/apache-tomcat-9.0.76"
-
+        recurse: yes
+        mode: u+rwx,g+rwx,o+rwx
+        
     - name: copy/deploy war
       copy:
         src: gameoflife-web/target/gameoflife.war
         dest: /apache-tomcat-9.0.76/webapps/
+        
+    - name: Start-Tomcat
+      command: nohup /home/velocity/server/apache-tomcat-9.0.76/bin/startup.sh
