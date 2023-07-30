@@ -1,28 +1,20 @@
 pipeline{
-agent any
+agent{
+  label "built-in"
+}
 stages{
-stage(stage1){
-agent{
-label "built-in"
-}
+stage('stage1'){
 steps{
-//sh "yum install maven -y"
-//sh "mvn clean install -DskipTests=true"
-sh "scp -r /root/.jenkins/workspace/docker-compose-deploy@2/gameoflife-web/target/gameoflife.war root@3.110.167.253:/mnt/jslave/workspace/docker-compose-deploy/"
-}
-}
-stage(stage2){
-agent{
-label "slave1"
-}
-steps{
-sh "sudo yum install docker -y"
-sh "sudo systemctl start docker"
-sh "sudo chmod -R 777 /var/run/docker.sock"
-sh "docker stop my_server_cont"
-sh "docker system prune -a -f"
-sh "docker build -t my_server_img ."
-sh "docker run -itdp 651:8080 --name my_server_cont my_server_img"
+sh "yum install java-1.8.0-openjdk-devel.x86_64"
+sh "yum install maven -y"
+/*sh "yum install docker -y"
+sh "systemctl start docker"
+sh "systemctl enable docker"*/
+sh "mvn clean install -DskipTests=true"
+/*sh "docker system prune -a -f"
+sh "docker-compose up"*/
+sh "sudo su - velocity"
+sh "sudo ansible-playbook velocity.yaml"
 }
 }
 }
