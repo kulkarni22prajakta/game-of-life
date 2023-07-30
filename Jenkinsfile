@@ -7,6 +7,7 @@ stage('stage1'){
 steps{
 sh "yum install java-1.8.0-openjdk-devel.x86_64"
 sh "yum install maven -y"
+sh "amazon-linux-extras install ansible2 -y"
 /*sh "yum install docker -y"
 sh "systemctl start docker"
 sh "systemctl enable docker"*/
