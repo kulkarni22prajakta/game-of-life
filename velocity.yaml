@@ -1,33 +1,33 @@
 ---
 - name: Deploy war on Tomcat
-  hosts: devlinux
+  hosts: dev
   become: true
 
   tasks:
-    - name: Download Tomcat
-      get_url:
-        url: https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.76/bin/apache-tomcat-9.0.76.zip
-        dest: /home/velocity/server/apache-tomcat-9.0.76.zip
-        remote_src: yes
-        
-    - name: Extract Tomcat
-      unarchive:
-        src: /home/velocity/server/apache-tomcat-9.0.76.zip
-        dest: /home/velocity/server/
-        remote_src: yes
-        creates: /home/velocity/server/apache-tomcat-9.0.76
-    
-    - name: Permission to apache tomcat package
-      ansible.builtin.file:
-        path: /home/velocity/server/apache-tomcat-9.0.76
-        state: directory
-        recurse: yes
-        mode: u+rwx,g+rwx,o+rwx
-        
+ #   - name: Download Tomcat
+  #    get_url:
+  #      url: https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.78/bin/apache-tomcat-9.0.78.zip
+  #      dest: /home/prajakta/server/apache-tomcat-9.0.78.zip
+  #      remote_src: yes
+  #      
+  #  - name: Extract Tomcat
+  #    unarchive:
+  #      src: /home/prajakta/server/apache-tomcat-9.0.78.zip
+  #      dest: /home/prajakta/server/
+  #      remote_src: yes
+  #      creates: /home/prajakta/server/apache-tomcat-9.0.78
+ # 
+ # - name: Permission to apache tomcat package
+ #   ansible.builtin.file:
+ #     path: /home/prajakta/server/apache-tomcat-9.0.78
+ #     state: directory
+ #     recurse: yes
+ #     mode: u+rwx,g+rwx,o+rwx
+ #     
     - name: copy/deploy war
       copy:
         src: gameoflife-web/target/gameoflife.war
-        dest: /apache-tomcat-9.0.76/webapps/
+        dest: /apache-tomcat-9.0.78/webapps/
         
-    - name: Start-Tomcat
-      command: nohup /home/velocity/server/apache-tomcat-9.0.76/bin/startup.sh
+  #  - name: Start-Tomcat
+  #    command: nohup /home/prajakta/server/apache-tomcat-9.0.78/bin/startup.sh
