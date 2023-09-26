@@ -3,7 +3,7 @@
   hosts: devlinux
   become: true
   tasks:
-    - name:
+    - name: Install java 
       command: yum install java-1.8.0-openjdk-devel.x86_64 -y
     - name: Download Tomcat
       get_url:
